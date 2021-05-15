@@ -1,6 +1,7 @@
 package com.cng457.webservice.entity;
 
 import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -12,8 +13,12 @@ import java.sql.Timestamp;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int commentId;
-    private String comment;
-    private int rating;
-    private Timestamp timestamp;
+    @Getter @Setter private int commentId;
+    @Getter @Setter private String comment;
+    @Getter @Setter private int rating;
+    @Getter @Setter private Timestamp timestamp;
+
+    @ManyToOne
+    private Product product;
+
 }
