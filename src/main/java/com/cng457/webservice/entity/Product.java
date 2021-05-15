@@ -39,4 +39,17 @@ public class Product {
     @Setter
     private Double price;
 
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Comment.class)
+    private List<Comment> comments = new ArrayList<Comment>();
+
+    @OneToMany(mappedBy = "feature", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Feature.class)
+    private List<Feature> features = new ArrayList<Feature>();
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public List<Feature> getFeatures() {
+        return features;
+    }
 }
