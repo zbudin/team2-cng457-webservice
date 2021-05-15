@@ -19,7 +19,7 @@ import javax.persistence.CascadeType;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private Long productId;
 
@@ -39,11 +39,11 @@ public class Product {
     @Setter
     private Double price;
 
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Comment.class)
-    private List<Comment> comments = new ArrayList<Comment>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Comment.class)
+    private List<Comment> comments;
 
-    @OneToMany(mappedBy = "feature", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Feature.class)
-    private List<Feature> features = new ArrayList<Feature>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Feature.class)
+    private List<Feature> features;
 
     public List<Comment> getComments() {
         return comments;
