@@ -1,8 +1,5 @@
 package com.cng457.webservice.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -12,6 +9,19 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 @Entity
 public class PC extends Product {
+
+    public PC(String brand, String model, String screenSize, Double price, String processor, int memory,
+            String screenResolution, int storage) {
+        super();
+        setBrand(brand);
+        setModel(model);
+        setScreenSize(screenSize);
+        setPrice(price);
+        this.processor = processor;
+        this.memory = memory;
+        this.screenResolution = screenResolution;
+        this.storage = storage;
+    }
 
     @Getter
     @Setter
