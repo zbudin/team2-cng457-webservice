@@ -21,7 +21,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    private Long productId;
+    private Long id;
 
     @Getter
     @Setter
@@ -39,15 +39,15 @@ public class Product {
     @Setter
     private Double price;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Comment.class)
-    private List<Comment> comments;
+    // @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Comment.class)
+    // private List<Comment> comments;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Feature.class)
     private List<Feature> features;
 
-    public List<Comment> getComments() {
-        return comments;
-    }
+    // public List<Comment> getComments() {
+    //     return comments;
+    // }
 
     public List<Feature> getFeatures() {
         return features;

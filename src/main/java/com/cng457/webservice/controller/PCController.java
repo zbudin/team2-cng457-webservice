@@ -8,14 +8,15 @@ import com.cng457.webservice.entity.Comment;
 import com.cng457.webservice.entity.PC;
 import com.cng457.webservice.entity.Product;
 import com.cng457.webservice.repository.IPCRepository;
-import com.cng457.webservice.service.PCCriteriaService;
-import com.cng457.webservice.entity.PCNotFoundException;
+import com.cng457.webservice.service.PCService;
+import com.cng457.webservice.entity.ItemNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,11 +25,11 @@ class PCController {
     private final IPCRepository repository;
 
     @Autowired
-    private final PCCriteriaService criteriaService;
+    private final PCService pcService;
 
-    PCController(IPCRepository repository, PCCriteriaService criteriaService) {
+    PCController(IPCRepository repository, PCService pcService) {
         this.repository = repository;
-        this.criteriaService = criteriaService;
+        this.pcService = pcService;
     }
 
     @GetMapping("/computers")
@@ -36,20 +37,10 @@ class PCController {
         return repository.findAll();
     }
 
-    @GetMapping("/computers/{productId}/details")
-    PC one(@PathVariable Long productId) {
+    @GetMapping("/computers/{id}/details")
+    PC one(@PathVariable Long id) {
 
-        return repository.findById(productId).orElseThrow(() -> new PCNotFoundException(productId));
-    }
-
-    @GetMapping("/computers/{productId}/comments")
-    List<Comment> findCommentsById(@PathVariable Long productId) {
-        Optional<PC> opt = repository.findById(productId);
-        if (opt.isPresent()) {
-            PC pc = opt.get();
-            return pc.getComments();
-        }
-        return new ArrayList<Comment>();
+        return repository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
     }
 
     @GetMapping("/computers/{brand}")
@@ -106,8 +97,13 @@ class PCController {
     }
 
     @GetMapping("/computers/byCriteria")
-    List<PC> findByCriteria() {
-        return criteriaService.findComputersByCriteria();
+    List<PC> findByCriteria(@RequestParam(required = false) String brand, @RequestParam(required = false) String model,
+            @RequestParam(required = false) String screenSize, @RequestParam(required = false) String minPrice,
+            @RequestParam(required = false) String maxPrice, @RequestParam(required = false) String processor,
+            @RequestParam(required = false) String memory, @RequestParam(required = false) String screenResolution,
+            @RequestParam(required = false) String storage) {
+        return pcService.findComputersByCriteria(brand, model, screenSize, minPrice, maxPrice, processor, memory,
+                screenResolution, storage);
     }
 
 }

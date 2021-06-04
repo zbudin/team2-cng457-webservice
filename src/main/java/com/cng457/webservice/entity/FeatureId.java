@@ -6,5 +6,5 @@ import java.io.Serializable;
 @Embeddable
 public class FeatureId implements Serializable {
     private String feature;
-    private int productId;
+    private int id;
 }
