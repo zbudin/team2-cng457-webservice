@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Cng457P2WebserviceApplication {
+public class WebServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Cng457P2WebserviceApplication.class, args);
+		SpringApplication.run(WebServiceApplication.class, args);
 	}
 
 }

@@ -8,6 +8,7 @@ import com.cng457.webservice.repository.IPhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -51,6 +52,18 @@ public class FeatureController {
         }).orElseThrow(() -> new ItemNotFoundException(productId));
     }
 
+    @PostMapping("/computers/{productId}/features/addMultiple")
+    List<Feature> addFeatures(@PathVariable Long productId, @RequestBody List<Feature> features) {
+        List<Feature> myList = new ArrayList<Feature>();
+        for(Feature feature:features){
+            myList.add(pcRepository.findById(productId).map(product -> {
+                feature.setProduct(product);
+                return repository.save(feature);
+            }).orElseThrow(() -> new ItemNotFoundException(productId)));
+        }
+        return myList;
+    }
+
     @GetMapping("/phones/{productId}/features")
     List<Feature> findPhoneFeaturesById(@PathVariable Long productId) {
         return repository.findByProductId(productId);
@@ -62,5 +75,17 @@ public class FeatureController {
             feature.setProduct(product);
             return repository.save(feature);
         }).orElseThrow(() -> new ItemNotFoundException(productId));
+    }
+
+    @PostMapping("/phones/{productId}/features/addMultiple")
+    List<Feature> addPhoneFeatures(@PathVariable Long productId, @RequestBody List<Feature> features) {
+        List<Feature> myList = new ArrayList<Feature>();
+        for(Feature feature:features){
+            myList.add(phoneRepository.findById(productId).map(product -> {
+                feature.setProduct(product);
+                return repository.save(feature);
+            }).orElseThrow(() -> new ItemNotFoundException(productId)));
+        }
+        return myList;
     }
 }

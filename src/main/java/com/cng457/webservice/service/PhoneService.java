@@ -18,8 +18,8 @@ public class PhoneService {
     @Autowired
     private IPhoneRepository phoneRepository;
 
-    public List<Phone> findPhonesByCriteria(String brand, String model, String screenSize, String minScreenSize,String maxScreenSize, Double minPrice,
-                                               Double maxPrice, int internalMemory) {
+    public List<Phone> findPhonesByCriteria(String brand, String model, String screenSize, String minScreenSize,String maxScreenSize, String minPrice,
+                                               Double maxPrice, String internalMemory,String feature) {
 
         CriteriaSpecification<Phone> specification = new CriteriaSpecification<Phone>();
         if (brand != null)
@@ -36,8 +36,10 @@ public class PhoneService {
             specification.add(new SearchCriteria("price", minPrice, SearchOperation.GREATER_THAN_EQUAL));
         if (maxPrice != null)
             specification.add(new SearchCriteria("price", maxPrice, SearchOperation.LESS_THAN_EQUAL));
-        if (internalMemory != 0)
+        if (internalMemory != null)
             specification.add(new SearchCriteria("internalMemory", internalMemory, SearchOperation.EQUAL));
+        if (feature != null)
+            specification.add(new SearchCriteria("feature", feature, SearchOperation.EQUAL));
 
         return phoneRepository.findAll(specification);
     }

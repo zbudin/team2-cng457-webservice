@@ -8,11 +8,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Builder
 public class Feature {
-    //@EmbeddedId @Getter @Setter
-    //private FeatureId featureid;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter

@@ -20,6 +20,7 @@ class LoadDatabase {
     CommandLineRunner initDatabase(IPCRepository repository, IPhoneRepository p_repository) {
 
         return args -> {
+            /*
             log.info("Preloading " + repository
                     .save(new PC("Asus", "ROG", "27", 5000.0, "AMD Ryzen 9 5950x", 32, "3840 x 2160", 1024)));
             log.info("Preloading " + repository
@@ -38,6 +39,8 @@ class LoadDatabase {
                     .save(new Phone("Nokia", "8 Plus", "4", 500.0,4 )));
             log.info("Preloading " + p_repository
                     .save(new Phone("Xiaomi", "Mi 9T", "4", 300.0,6 )));
+
+             */
 
         };
     }
