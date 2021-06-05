@@ -15,9 +15,9 @@ public class Phone extends Product {
 
     @Getter
     @Setter
-    private short internalMemory;
+    private int internalMemory;
 
-    public Phone(String brand, String model, String screenSize, Double price, short internalMemory) {
+    public Phone(String brand, String model, String screenSize, Double price, int internalMemory) {
         super();
         setBrand(brand);
         setModel(model);
