@@ -3,6 +3,7 @@ package com.cng457.webservice.repository;
 import com.cng457.webservice.entity.PC;
 
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.query.Param;
@@ -24,5 +25,5 @@ public interface IPCRepository extends JpaRepository<PC, Long>, JpaSpecification
     List<PC> findByScreenResolution(@Param("screenResolution") String screenResolution);
 
     List<PC> findByStorage(@Param("storage") String storage);
-    
+
 }
