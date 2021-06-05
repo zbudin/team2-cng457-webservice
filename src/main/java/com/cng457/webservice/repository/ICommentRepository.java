@@ -15,4 +15,6 @@ public interface ICommentRepository extends JpaRepository<Comment, Long>, JpaSpe
 
     List<Comment> findByProductId(Long id);
 
+    List<Comment> findPhoneCommentsById(Long id);
+
 }

@@ -7,4 +7,10 @@ import java.io.Serializable;
 public class FeatureId implements Serializable {
     private String feature;
     private int id;
+
+    public FeatureId(){   }
+    public FeatureId(String feature,int id){
+        this.feature = feature;
+        this.id = id;
+    }
 }
