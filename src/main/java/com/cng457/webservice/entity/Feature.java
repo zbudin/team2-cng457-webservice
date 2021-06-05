@@ -10,9 +10,19 @@ import javax.persistence.*;
 @Entity
 @Builder
 public class Feature {
-    @EmbeddedId @Getter @Setter
-    private FeatureId featureid;
+    //@EmbeddedId @Getter @Setter
+    //private FeatureId featureid;
 
-    @ManyToOne @Getter @Setter
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    private Long id;
+
+    @Getter
+    @Setter
+    private String feature;
+
+    @ManyToOne(fetch = FetchType.EAGER) @Getter @Setter
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 }

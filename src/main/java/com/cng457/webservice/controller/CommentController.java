@@ -6,6 +6,7 @@ import com.cng457.webservice.entity.Comment;
 import com.cng457.webservice.entity.ItemNotFoundException;
 import com.cng457.webservice.repository.ICommentRepository;
 import com.cng457.webservice.repository.IPCRepository;
+import com.cng457.webservice.repository.IPhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +23,13 @@ class CommentController {
     @Autowired
     private final IPCRepository pcRepository;
 
-    CommentController(ICommentRepository repository, IPCRepository pcRepository) {
+    @Autowired
+    private final IPhoneRepository phoneRepository;
+
+    CommentController(ICommentRepository repository, IPCRepository pcRepository, IPhoneRepository phoneRepository) {
         this.repository = repository;
         this.pcRepository = pcRepository;
+        this.phoneRepository = phoneRepository;
     }
 
     @GetMapping("/comments")
@@ -50,4 +55,16 @@ class CommentController {
         }).orElseThrow(() -> new ItemNotFoundException(productId));
     }
 
+    @GetMapping("/phones/{productId}/comments")
+    List<Comment> findPhoneCommentsById(@PathVariable Long productId) {
+        return repository.findByProductId(productId);
+    }
+
+    @PostMapping("/phones/{productId}/comments/add")
+    Comment addPhoneComment(@PathVariable Long productId, @RequestBody Comment comment) {
+        return phoneRepository.findById(productId).map(product -> {
+            comment.setProduct(product);
+            return repository.save(comment);
+        }).orElseThrow(() -> new ItemNotFoundException(productId));
+    }
 }

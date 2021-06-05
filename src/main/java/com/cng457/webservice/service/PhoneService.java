@@ -18,7 +18,6 @@ public class PhoneService {
     @Autowired
     private IPhoneRepository phoneRepository;
 
-
     public List<Phone> findPhonesByCriteria(String brand, String model, String screenSize, String minScreenSize,String maxScreenSize, Double minPrice,
                                                Double maxPrice, int internalMemory) {
 

@@ -39,13 +39,14 @@ public class Product {
     @Setter
     private Double price;
 
-    // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Comment.class)
-    // @JoinColumn(name = "product_id", referencedColumnName = "id")
-    // private List<Comment> comments;
+    /*
+     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Comment.class)
+     @JoinColumn(name = "product_id", referencedColumnName = "id")
+     private List<Comment> comments;
 
-    // public List<Comment> getComments() {
-    //     return comments;
-    // }
+     public List<Comment> getComments() {
+         return comments;
+     }
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Feature.class)
     private List<Feature> features;
@@ -53,4 +54,5 @@ public class Product {
     public List<Feature> getFeatures() {
         return features;
     }
+    */
 }

@@ -16,6 +16,8 @@ import java.util.List;
 public class PhoneController {
     @Autowired
     private final PhoneService service;
+
+    @Autowired
     private final IPhoneRepository repository;
 
     PhoneController(IPhoneRepository repository, PhoneService service) {
@@ -23,9 +25,25 @@ public class PhoneController {
         this.service = service;
     }
 
+    @PostMapping("/phones/create")
+    Phone createComputer(@RequestBody Phone phone) {
+        return repository.save(phone);
+    }
+
+    @PostMapping("/phones/createMultiple")
+    List<Phone> createComputers(@RequestBody List<Phone> phones) {
+        return repository.saveAll(phones);
+    }
+
     @GetMapping("/phones")
     List<Phone> all() {
         return repository.findAll();
+    }
+
+    @GetMapping("/phones/{id}")
+    Phone getById(@PathVariable Long id) {
+
+        return repository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
     }
 
     @GetMapping("/phones/{id}/details")
@@ -59,11 +77,6 @@ public class PhoneController {
     List<Phone> findByMemory(@PathVariable int memory) {
 
         return repository.findByInternalMemory(memory);
-    }
-
-    @PostMapping("/phones/create")
-    Phone createComputer(@RequestBody Phone phone) {
-        return repository.save(phone);
     }
 
     @GetMapping("/phones/byCriteria")
