@@ -30,17 +30,17 @@ public class PCService implements IPCService {
         if (screenSize != null)
             specification.add(new SearchCriteria("screenSize", screenSize, SearchOperation.EQUAL));
         if (minPrice != null)
-            specification.add(new SearchCriteria("price", minPrice, SearchOperation.GREATER_THAN_EQUAL));
+            specification.add(new SearchCriteria("price", Double.valueOf(minPrice), SearchOperation.GREATER_THAN_EQUAL));
         if (maxPrice != null)
-            specification.add(new SearchCriteria("price", maxPrice, SearchOperation.LESS_THAN_EQUAL));
+            specification.add(new SearchCriteria("price", Double.valueOf(maxPrice), SearchOperation.LESS_THAN_EQUAL));
         if (processor != null)
             specification.add(new SearchCriteria("processor", processor, SearchOperation.EQUAL));
         if (memory != null)
-            specification.add(new SearchCriteria("memory", memory, SearchOperation.EQUAL));
+            specification.add(new SearchCriteria("memory", Integer.valueOf(memory), SearchOperation.EQUAL));
         if (screenResolution != null)
             specification.add(new SearchCriteria("screenResolution", screenResolution, SearchOperation.EQUAL));
         if (storage != null)
-            specification.add(new SearchCriteria("storage", storage, SearchOperation.EQUAL));
+            specification.add(new SearchCriteria("storage", Integer.valueOf(storage), SearchOperation.EQUAL));
 
         return computerRepository.findAll(specification);
     }

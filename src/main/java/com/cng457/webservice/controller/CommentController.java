@@ -1,11 +1,8 @@
 package com.cng457.webservice.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import com.cng457.webservice.entity.Comment;
-import com.cng457.webservice.entity.PC;
 import com.cng457.webservice.entity.ItemNotFoundException;
 import com.cng457.webservice.repository.ICommentRepository;
 import com.cng457.webservice.repository.IPCRepository;
