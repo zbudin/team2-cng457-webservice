@@ -1,7 +1,6 @@
 package com.cng457.webservice;
 
-import com.cng457.webservice.entity.PC;
-import com.cng457.webservice.entity.Phone;
+
 import com.cng457.webservice.repository.IPCRepository;
 
 import com.cng457.webservice.repository.IPhoneRepository;
