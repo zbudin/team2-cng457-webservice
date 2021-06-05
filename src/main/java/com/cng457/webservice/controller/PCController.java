@@ -71,7 +71,7 @@ class PCController {
     @GetMapping("/computers/price/{price}")
     List<PC> findByPrice(@PathVariable String price) {
 
-        return repository.findByPrice(price);
+        return repository.findByPrice(Double.valueOf(price));
     }
 
     @GetMapping("/computers/processor/{processor}")
@@ -83,10 +83,10 @@ class PCController {
     @GetMapping("/computers/memory/{memory}")
     List<PC> findByMemory(@PathVariable String memory) {
 
-        return repository.findByMemory(memory);
+        return repository.findByMemory(Integer.valueOf(memory));
     }
 
-    @GetMapping("/computers/screenResoluiton/{screenResolution}")
+    @GetMapping("/computers/screenResolution/{screenResolution}")
     List<PC> findByScreenResolution(@PathVariable String screenResolution) {
 
         return repository.findByScreenResolution(screenResolution);
@@ -95,7 +95,7 @@ class PCController {
     @GetMapping("/computers/storage/{storage}")
     List<PC> findByStorage(@PathVariable String storage) {
 
-        return repository.findByStorage(storage);
+        return repository.findByStorage(Integer.valueOf(storage));
     }
 
     @GetMapping("/computers/search")

@@ -16,14 +16,14 @@ public interface IPCRepository extends JpaRepository<PC, Long>, JpaSpecification
 
     List<PC> findByScreenSize(@Param("screenSize") String screenSize);
 
-    List<PC> findByPrice(@Param("price") String price);
+    List<PC> findByPrice(@Param("price") Double price);
 
     List<PC> findByProcessor(@Param("processor") String processor);
 
-    List<PC> findByMemory(@Param("memory") String memory);
+    List<PC> findByMemory(@Param("memory") int memory);
 
     List<PC> findByScreenResolution(@Param("screenResolution") String screenResolution);
 
-    List<PC> findByStorage(@Param("storage") String storage);
+    List<PC> findByStorage(@Param("storage") int storage);
 
 }
