@@ -3,6 +3,7 @@ package com.cng457.webservice.controller;
 import java.util.List;
 
 import com.cng457.webservice.entity.PC;
+
 import com.cng457.webservice.repository.IPCRepository;
 import com.cng457.webservice.service.PCService;
 import com.cng457.webservice.entity.ItemNotFoundException;
@@ -103,9 +104,15 @@ class PCController {
             @RequestParam(required = false) String screenSize, @RequestParam(required = false) String minPrice,
             @RequestParam(required = false) String maxPrice, @RequestParam(required = false) String processor,
             @RequestParam(required = false) String memory, @RequestParam(required = false) String screenResolution,
-            @RequestParam(required = false) String storage) {
+            @RequestParam(required = false) String storage,  @RequestParam(required = false) String feature) {
         return pcService.findComputersByCriteria(brand, model, screenSize, minPrice, maxPrice, processor, memory,
-                screenResolution, storage);
+                screenResolution, storage, feature);
+    }
+
+    @GetMapping("/computers/byRating")
+    List<PC> findByComment(@RequestParam(required = false) int rating) {
+
+        return repository.findByRating(rating);
     }
 
 }
