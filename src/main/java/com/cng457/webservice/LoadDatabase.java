@@ -1,6 +1,5 @@
 package com.cng457.webservice;
 
-import com.cng457.webservice.entity.PC;
 import com.cng457.webservice.repository.IPCRepository;
 
 import org.slf4j.Logger;

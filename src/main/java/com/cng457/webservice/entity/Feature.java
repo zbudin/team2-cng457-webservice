@@ -13,6 +13,7 @@ public class Feature {
     @EmbeddedId @Getter @Setter
     private FeatureId featureid;
 
-    @ManyToOne @Getter @Setter
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 }

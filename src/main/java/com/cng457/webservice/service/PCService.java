@@ -20,7 +20,7 @@ public class PCService implements IPCService {
 
     @Override
     public List<PC> findComputersByCriteria(String brand, String model, String screenSize, String minPrice,
-            String maxPrice, String processor, String memory, String screenResolution, String storage) {
+            String maxPrice, String processor, String memory, String screenResolution, String storage, String feature) {
 
         CriteriaSpecification<PC> specification = new CriteriaSpecification<PC>();
         if (brand != null)
@@ -30,7 +30,8 @@ public class PCService implements IPCService {
         if (screenSize != null)
             specification.add(new SearchCriteria("screenSize", screenSize, SearchOperation.EQUAL));
         if (minPrice != null)
-            specification.add(new SearchCriteria("price", Double.valueOf(minPrice), SearchOperation.GREATER_THAN_EQUAL));
+            specification
+                    .add(new SearchCriteria("price", Double.valueOf(minPrice), SearchOperation.GREATER_THAN_EQUAL));
         if (maxPrice != null)
             specification.add(new SearchCriteria("price", Double.valueOf(maxPrice), SearchOperation.LESS_THAN_EQUAL));
         if (processor != null)
@@ -41,6 +42,8 @@ public class PCService implements IPCService {
             specification.add(new SearchCriteria("screenResolution", screenResolution, SearchOperation.EQUAL));
         if (storage != null)
             specification.add(new SearchCriteria("storage", Integer.valueOf(storage), SearchOperation.EQUAL));
+        if (feature != null)
+            specification.add(new SearchCriteria("feature", feature, SearchOperation.EQUAL));
 
         return computerRepository.findAll(specification);
     }
