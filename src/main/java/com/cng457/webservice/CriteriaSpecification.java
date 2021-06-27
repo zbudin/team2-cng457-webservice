@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Subquery;
 
 import com.cng457.webservice.entity.Feature;
+import com.cng457.webservice.entity.Product;
 import com.cng457.webservice.entity.SearchCriteria;
 import com.cng457.webservice.entity.SearchOperation;
 
@@ -34,9 +37,11 @@ public class CriteriaSpecification<T> implements Specification<T> {
 
         for (SearchCriteria criteria : list) {
             if (criteria.getKey() == "feature") {
-                Subquery<Feature> subquery = query.subquery(Feature.class);
+                Subquery<Long> subquery = query.subquery(Long.class);
                 Root<Feature> feat = subquery.from(Feature.class);
-                subquery.select(feat).where(builder.equal(feat.get("feature"), criteria.getValue().toString()));
+                Join<Feature, Product> joinOnProduct = feat.join("product");
+                Path<Long> pId = joinOnProduct.get("id");
+                subquery.select(pId).where(builder.equal(feat.get("feature"), criteria.getValue().toString()));
                 predicates.add(builder.in(root.get("id")).value(subquery));
             } else {
                 if (criteria.getOperation().equals(SearchOperation.GREATER_THAN)) {
