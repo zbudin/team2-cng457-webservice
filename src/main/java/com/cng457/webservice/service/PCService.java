@@ -18,6 +18,10 @@ public class PCService implements IPCService {
     @Autowired
     private IPCRepository computerRepository;
 
+    public List<PC> getComputers() {
+        return computerRepository.findAll();
+    }
+
     @Override
     public List<PC> findComputersByCriteria(String brand, String model, String screenSize, String minPrice,
             String maxPrice, String processor, String memory, String screenResolution, String storage, String feature) {

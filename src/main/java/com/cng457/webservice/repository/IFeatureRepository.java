@@ -6,8 +6,11 @@ import com.cng457.webservice.entity.Product;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
+
+import javax.persistence.LockModeType;
 
 public interface IFeatureRepository extends JpaRepository<Feature, Long>, JpaSpecificationExecutor<Feature> {
 
@@ -16,4 +19,7 @@ public interface IFeatureRepository extends JpaRepository<Feature, Long>, JpaSpe
     List<Feature> findByProductId(Long id);
 
     List<Feature> findPhoneCommentsById(Long id);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Feature save(Feature feature);
 }
