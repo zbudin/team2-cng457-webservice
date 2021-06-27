@@ -1,6 +1,7 @@
 package com.cng457.webservice.service;
 
 import com.cng457.webservice.CriteriaSpecification;
+import com.cng457.webservice.entity.PC;
 import com.cng457.webservice.entity.Phone;
 import com.cng457.webservice.entity.SearchCriteria;
 import com.cng457.webservice.entity.SearchOperation;
@@ -11,10 +12,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PhoneService {
+public class PhoneService{
 
     @Autowired
     private IPhoneRepository phoneRepository;
+
+    public List<Phone> getPhones() {
+        return phoneRepository.findAll();
+    }
 
     public List<Phone> findPhonesByCriteria(String brand, String model, String screenSize, String minScreenSize,String maxScreenSize, String minPrice,
                                                Double maxPrice, String internalMemory,String feature) {

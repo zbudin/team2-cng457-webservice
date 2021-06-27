@@ -34,7 +34,7 @@ public class PhoneController {
 
     @GetMapping("/phones")
     List<Phone> all() {
-        return repository.findAll();
+        return service.getPhones();
     }
 
     @GetMapping("/phones/{id}")
