@@ -1,5 +1,6 @@
 package com.cng457.webservice.repository;
 
+import com.cng457.webservice.entity.PC;
 import com.cng457.webservice.entity.Phone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -34,4 +35,6 @@ public interface IPhoneRepository extends JpaRepository<Phone, Long>, JpaSpecifi
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Phone save(Phone phone);
+
+    List<Phone> findAll();
 }

@@ -32,21 +32,42 @@ class CommentController {
         this.phoneRepository = phoneRepository;
     }
 
+    /**
+     * Retrieves and returns a list of available comments in the system.
+     * @return
+     */
     @GetMapping("/comments")
     List<Comment> all() {
         return repository.findAll();
     }
 
+
+    /**
+     * Retrieves and returns the comment with given id.
+     * @param commentId
+     * @return Comment object.
+     */
     @GetMapping("/comments/{commentId}")
     Comment one(@PathVariable Long commentId) {
         return repository.findById(commentId).orElseThrow(() -> new ItemNotFoundException(commentId));
     }
 
+    /**
+     * Retrieves and returns a list of available computer comments for given product id.
+     * @param productId
+     * @return List of Comment objects.
+     */
     @GetMapping("/computers/{productId}/comments")
     List<Comment> findCommentsById(@PathVariable Long productId) {
         return repository.findByProductId(productId);
     }
 
+    /**
+     * Creates a new comment for a computer with given productId.
+     * @param productId
+     * @param comment
+     * @return Comment object.
+     */
     @PostMapping("/computers/{productId}/comments/add")
     Comment addComment(@PathVariable Long productId, @RequestBody Comment comment) {
         return pcRepository.findById(productId).map(product -> {
@@ -55,11 +76,22 @@ class CommentController {
         }).orElseThrow(() -> new ItemNotFoundException(productId));
     }
 
+    /**
+     * Retrieves and returns a list of available phone comments for given product id.
+     * @param productId
+     * @return List of Comment objects.
+     */
     @GetMapping("/phones/{productId}/comments")
     List<Comment> findPhoneCommentsById(@PathVariable Long productId) {
         return repository.findByProductId(productId);
     }
 
+    /**
+     * Creates a new comment for a phone with given productId.
+     * @param productId
+     * @param comment
+     * @return Comment object.
+     */
     @PostMapping("/phones/{productId}/comments/add")
     Comment addPhoneComment(@PathVariable Long productId, @RequestBody Comment comment) {
         return phoneRepository.findById(productId).map(product -> {
