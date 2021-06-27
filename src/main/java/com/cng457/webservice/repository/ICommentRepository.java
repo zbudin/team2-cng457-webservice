@@ -4,8 +4,12 @@ import com.cng457.webservice.entity.Comment;
 import com.cng457.webservice.entity.Product;
 
 import java.util.List;
+
+import javax.persistence.LockModeType;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.domain.Sort;
 
@@ -16,5 +20,8 @@ public interface ICommentRepository extends JpaRepository<Comment, Long>, JpaSpe
     List<Comment> findByProductId(Long id);
 
     List<Comment> findPhoneCommentsById(Long id);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Comment save(Comment comment);
 
 }

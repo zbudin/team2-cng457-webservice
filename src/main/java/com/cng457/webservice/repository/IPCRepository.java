@@ -4,8 +4,11 @@ import com.cng457.webservice.entity.PC;
 
 import java.util.List;
 
+import javax.persistence.LockModeType;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -29,5 +32,10 @@ public interface IPCRepository extends JpaRepository<PC, Long>, JpaSpecification
 
     @Query(value = "SELECT * FROM product p WHERE p.id in (SELECT product_id from comment f WHERE f.rating = :rating) ", nativeQuery = true)
     List<PC> findByRating(@Param("rating") int rating);
+
+    List<PC> findAll();
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    PC save(PC computer);
 
 }

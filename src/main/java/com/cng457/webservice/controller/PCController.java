@@ -35,14 +35,9 @@ class PCController {
         return repository.save(computer);
     }
 
-    @PostMapping("/computers/createMultiple")
-    List<PC> createComputers(@RequestBody List<PC> computers) {
-        return repository.saveAll(computers);
-    }
-
     @GetMapping("/computers")
     List<PC> all() {
-        return repository.findAll();
+        return pcService.getComputers();
     }
 
     @GetMapping("/computers/{id}")
@@ -104,7 +99,7 @@ class PCController {
             @RequestParam(required = false) String screenSize, @RequestParam(required = false) String minPrice,
             @RequestParam(required = false) String maxPrice, @RequestParam(required = false) String processor,
             @RequestParam(required = false) String memory, @RequestParam(required = false) String screenResolution,
-            @RequestParam(required = false) String storage,  @RequestParam(required = false) String feature) {
+            @RequestParam(required = false) String storage, @RequestParam(required = false) String feature) {
         return pcService.findComputersByCriteria(brand, model, screenSize, minPrice, maxPrice, processor, memory,
                 screenResolution, storage, feature);
     }
