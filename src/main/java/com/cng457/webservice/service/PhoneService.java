@@ -1,11 +1,9 @@
 package com.cng457.webservice.service;
 
 import com.cng457.webservice.CriteriaSpecification;
-import com.cng457.webservice.entity.PC;
 import com.cng457.webservice.entity.Phone;
 import com.cng457.webservice.entity.SearchCriteria;
 import com.cng457.webservice.entity.SearchOperation;
-import com.cng457.webservice.repository.IPCRepository;
 import com.cng457.webservice.repository.IPhoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
